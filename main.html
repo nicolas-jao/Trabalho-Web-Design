@@ -10,11 +10,13 @@
     <link rel="stylesheet" href="style.css">
     
     <script>
+        let date = new Date();
 
         function calculaTempo(){
-            let exp, tempo, temporario;
+            let exp, tempo, temporario, diasWeekly;
             let ganhoDiario = Number(document.getElementById("daily").value);
 
+            <!--Analisa os -->
             switch (document.getElementById('nivel').value) {
                 case '1':
                     exp = 0;
@@ -79,19 +81,31 @@
             }
             exp = exp + Number(document.getElementById('experiencia').value);
             
-            tempo = Math.ceil((2679-exp)/ganhoDiario);
+            if(exp < 2679){
+                tempo = Math.ceil((2679-exp)/ganhoDiario);
+                diasWeekly = Math.ceil(tempo/7);
+
+                if(date.getDay() != 0)
+                {
+                    diasWeekly = diasWeekly - 1;    
+                }
+
+                temporario = Number(document.getElementById("weekly").value);
+                temporario = diasWeekly * temporario;
+                temporario = Math.floor(temporario/ganhoDiario);
+
+                if(temporario => 7){
+                    temporario = temporario - Math.floor(temporario/7);
+                }
+
+                tempo = tempo - temporario;
+                document.getElementById('tempo').innerHTML =  tempo + " dias " + diasWeekly;          
+            }
             
-            temporario = Number(document.getElementById("weekly").value);
-            temporario = Math.ceil(tempo/7) * temporario;
+            else{
+                document.getElementById('tempo').innerHTML = "Simbolo já completo";   
+            }
 
-            /*Known bug:
-            O codigo assume que o próximo dia que o usuário vai receber as weeklies é o dia seguinte.
-            Para ajustar o valor, preciso verificar se hoje é domingo e ajustar o valor da variável "temporario" de acordo.
-            */
-
-            temporario = Math.floor(temporario/ganhoDiario);
-            tempo = tempo - temporario;
-            document.getElementById('tempo').innerHTML =  tempo + " dias";            
         }
 
 
@@ -110,7 +124,7 @@
             <input type="number" id="nivel" name="nivel" min="1" max="20" value="18" class="classeEXP">
             <br>
             <label for="quantity">Experiência:</label>
-            <input type="number" id="experiencia" name="experiencia"  value="376" class="classeEXP">    
+            <input type="number" id="experiencia" name="experiencia"  min="0" value="376" class="classeEXP">    
         </div>
 
         <div class="areaValores">
