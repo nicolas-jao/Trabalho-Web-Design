@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Títuo</title>
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <meta name="keywords" content="HTML, Javascript, Exercício">
+    <meta name="author" content="João Nícolas">
+    <link rel="stylesheet" href="style.css">
+    
+    <script>
+        function funcao() {
+            let variavel;
+            let divisores = [];
+            variavel = Number(document.getElementById('valor').value);
+            
+
+            if (variavel >= 10 && variavel <= 1000){
+                for(i=1; i<variavel; i++){
+                    if(variavel%i == 0)
+                    {
+                        divisores.push(i);
+                    }
+                }
+                if(divisores.length >= 5)
+                {
+                    document.getElementById('valor').style.color = "#ff0000";
+                }
+                document.getElementById("paragrafo").innerHTML = divisores;
+            }
+            else{
+                alert("Valor não está no intervalo válido");
+              }
+          }
+
+
+        function tempo(){
+            let exp, tempo, temporario;
+            let ganhoDiario = Number(document.getElementById("daily").value);
+
+            switch (document.getElementById('nivel').value) {
+                case '1':
+                    exp = 0;
+                    break;
+                case '2':
+                    exp = 12;
+                    break;
+                case '3':
+                    exp = 27;
+                    break;                    
+                case '4':
+                    exp = 47;
+                    break;
+                case '5':
+                    exp = 74;
+                    break;
+                case '6':
+                    exp = 110;
+                    break;
+                case '7':
+                    exp = 157;
+                    break;
+                case '8':
+                    exp = 217;
+                    break;
+                case '9':
+                    exp = 292;
+                    break;
+                case '10':
+                    exp = 384;
+                    break;
+                case '11':
+                    exp = 495;
+                    break;
+                case '12':
+                    exp = 627;
+                    break;
+                case '13':
+                    exp = 782;
+                    break;
+                case '14':
+                    exp = 962;
+                    break;
+                case '15':
+                    exp = 1169;
+                    break;
+                case '16':
+                    exp = 1405;
+                    break;
+                case '17':
+                    exp = 1672;
+                    break;
+                case '18':
+                    exp = 1972;
+                    break;
+                case '19':
+                    exp = 2307;
+                    break;
+                case '20':
+                    exp = 2679;
+                    break;
+                default:
+                    break;
+            }
+            exp = exp + Number(document.getElementById('experiencia').value);
+            
+            tempo = Math.ceil((2679-exp)/ganhoDiario);
+            
+            temporario = Number(document.getElementById("weekly").value);
+            temporario = Math.ceil(tempo/7) * temporario;
+
+            /*Known bug:
+            O codigo assume que o próximo dia que o usuário vai receber as weeklies é o dia seguinte.
+            Para ajustar o valor, preciso verificar se hoje é domingo e ajustar o valor da variável "temporario" de acordo.
+            */
+
+            temporario = Math.floor(temporario/ganhoDiario);
+            tempo = tempo - temporario;
+            document.getElementById('tempo').innerHTML =  tempo + " dias";            
+        }
+    </script>
+</head>
+<body>   
+    <form>
+        <label for="fname">Arcane Symbol</label><br>
+        <label for="nivel">Nível:</label>
+        <input type="number" id="nivel" name="nivel" min="1" max="20" value="18">
+        <br>
+        <label for="quantity">Experiência:</label>
+        <input type="number" id="experiencia" name="experiencia"  value="376">
+        <br>
+
+        <label for="daily">Ganho diário:</label>
+        <select id="daily" name="daily">
+            <option selected="selected">20</option>
+            <option>21</option>
+            <option>22</option>
+            <option>24</option>
+            <option>26</option>
+            <option>28</option>
+            <option>30</option>
+          </select>
+
+        <label for="weekly">Ganho semanal:</label>
+        <select id="weekly" name="weekly">
+            <option>0</option>
+            <option>15</option>
+            <option>30</option>
+            <option selected="selected">45</option>
+          </select>
+        <br>
+        <input type="button" value="Calcular" onclick="tempo()">
+        <br>
+        
+
+    </form> 
+    
+
+
+    <p>Tempo: restante: <span id="tempo"> </span></p>
+    
+</body>
+</html>
