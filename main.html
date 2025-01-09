@@ -112,6 +112,16 @@
         function aumentaEXP(incremento) {
             document.getElementById('experiencia').value = Number(document.getElementById('experiencia').value) + Number(incremento);
         }
+
+        /*
+        Known Bug:
+        A lógica não funciona corretamente quando se leva em consideração as weeklies, causando assim imprecisões.
+        É preciso reestruturar a lógica, de forma que o cálculo seja feito por semanas e depois convertido para dias.
+        */
+
+
+
+
     </script>
 </head>
 <body>   
