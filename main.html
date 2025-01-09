@@ -3,39 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Títuo</title>
+    <title>Cálculadora Arcane Symbols Maplestory</title>
     <link rel="icon" type="image/x-icon" href="favicon.png">
-    <meta name="keywords" content="HTML, Javascript, Exercício">
+    <meta name="keywords" content="HTML, CSS, Javascript, Trabalho, WebDev">
     <meta name="author" content="João Nícolas">
     <link rel="stylesheet" href="style.css">
     
     <script>
-        function funcao() {
-            let variavel;
-            let divisores = [];
-            variavel = Number(document.getElementById('valor').value);
-            
 
-            if (variavel >= 10 && variavel <= 1000){
-                for(i=1; i<variavel; i++){
-                    if(variavel%i == 0)
-                    {
-                        divisores.push(i);
-                    }
-                }
-                if(divisores.length >= 5)
-                {
-                    document.getElementById('valor').style.color = "#ff0000";
-                }
-                document.getElementById("paragrafo").innerHTML = divisores;
-            }
-            else{
-                alert("Valor não está no intervalo válido");
-              }
-          }
-
-
-        function tempo(){
+        function calculaTempo(){
             let exp, tempo, temporario;
             let ganhoDiario = Number(document.getElementById("daily").value);
 
@@ -100,8 +76,6 @@
                 case '20':
                     exp = 2679;
                     break;
-                default:
-                    break;
             }
             exp = exp + Number(document.getElementById('experiencia').value);
             
@@ -119,46 +93,63 @@
             tempo = tempo - temporario;
             document.getElementById('tempo').innerHTML =  tempo + " dias";            
         }
+
+
+        function aumentaEXP(incremento) {
+            document.getElementById('experiencia').value = Number(document.getElementById('experiencia').value) + Number(incremento);
+        }
     </script>
 </head>
 <body>   
-    <form>
-        <label for="fname">Arcane Symbol</label><br>
-        <label for="nivel">Nível:</label>
-        <input type="number" id="nivel" name="nivel" min="1" max="20" value="18">
-        <br>
-        <label for="quantity">Experiência:</label>
-        <input type="number" id="experiencia" name="experiencia"  value="376">
-        <br>
-
-        <label for="daily">Ganho diário:</label>
-        <select id="daily" name="daily">
-            <option selected="selected">20</option>
-            <option>21</option>
-            <option>22</option>
-            <option>24</option>
-            <option>26</option>
-            <option>28</option>
-            <option>30</option>
-          </select>
-
-        <label for="weekly">Ganho semanal:</label>
-        <select id="weekly" name="weekly">
-            <option>0</option>
-            <option>15</option>
-            <option>30</option>
-            <option selected="selected">45</option>
-          </select>
-        <br>
-        <input type="button" value="Calcular" onclick="tempo()">
-        <br>
+    <div id="areaCalc" class="grid">
         
+        <div class="titulo"><h3>Arcane Symbol</h3></div>
+        
+        <div class="areaEXP">
+            <label for="nivel">Nível:</label>
+            <input type="number" id="nivel" name="nivel" min="1" max="20" value="18" class="classeEXP">
+            <br>
+            <label for="quantity">Experiência:</label>
+            <input type="number" id="experiencia" name="experiencia"  value="376" class="classeEXP">    
+        </div>
 
-    </form> 
-    
+        <div class="areaValores">
+            <label for="daily">Ganho diário:</label>
+            <select id="daily" name="daily" class="classeValores">
+                <option selected="selected">20</option>
+                <option>21</option>
+                <option>22</option>
+                <option>24</option>
+                <option>26</option>
+                <option>28</option>
+                <option>30</option>
+            </select>
+            <br>
+            <label for="weekly">Ganho semanal:</label>
+            <select id="weekly" name="weekly" class="classeValores">
+                <option>0</option>
+                <option>15</option>
+                <option>30</option>
+                <option selected="selected">45</option>
+            </select>    
+        </div>
+        <div class="areaIncrementos">
+            <input type="button" value="+10" onclick="aumentaEXP(10)">
+            <input type="button" value="+15" onclick="aumentaEXP(15)">
+            <input type="button" value="+20" onclick="aumentaEXP(20)">
+            <input type="button" value="+30" onclick="aumentaEXP(30)">
+            <input type="button" value="+45" onclick="aumentaEXP(45)">
+        </div>
 
+        <div class="areaBotao">
+            <input type="button" value="Calcular" onclick="calculaTempo()" style="width: 400px";>
+        </div>
+       
+        <div class="areaResultado">
+            <p>Tempo restantes: <span id="tempo"> </span></p>
+        </div>
+    </div>
 
-    <p>Tempo: restante: <span id="tempo"> </span></p>
     
 </body>
 </html>
