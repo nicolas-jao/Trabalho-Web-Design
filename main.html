@@ -19,6 +19,7 @@
             document.getElementById('experiencia').value = localStorage.getItem("expJ");
             document.getElementById('nivel').value = localStorage.getItem("nivelJ");
             controle = 0;
+            document.getElementById('tempo').innerHTML =  "";
         }
 
         function ChuChu(){
@@ -27,6 +28,7 @@
             document.getElementById('experiencia').value = localStorage.getItem("expC");
             document.getElementById('nivel').value = localStorage.getItem("nivelC");
             controle = 1;
+            document.getElementById('tempo').innerHTML =  "";
         }
 
         function Lachelein(){
@@ -35,6 +37,7 @@
             document.getElementById('experiencia').value = localStorage.getItem("expL");
             document.getElementById('nivel').value = localStorage.getItem("nivelL");
             controle = 2;
+            document.getElementById('tempo').innerHTML =  "";
         }
 
         function Arcana(){
@@ -43,6 +46,7 @@
             document.getElementById('experiencia').value = localStorage.getItem("expA");
             document.getElementById('nivel').value = localStorage.getItem("nivelA");
             controle = 3;
+            document.getElementById('tempo').innerHTML =  "";
         }
 
         function Morass(){
@@ -51,6 +55,7 @@
             document.getElementById('experiencia').value = localStorage.getItem("expM");
             document.getElementById('nivel').value = localStorage.getItem("nivelM");
             controle = 4;
+            document.getElementById('tempo').innerHTML =  "";
         }
         
         function Esfera(){
@@ -59,6 +64,7 @@
             document.getElementById('experiencia').value = localStorage.getItem("expE");
             document.getElementById('nivel').value = localStorage.getItem("nivelE");
             controle = 5;
+            document.getElementById('tempo').innerHTML =  "";
         }
 
         function resetCor(){
@@ -223,7 +229,7 @@
 
     </script>
 </head>
-<body onload = "Journey()">   
+<body onload = "Journey()">
     <div id="areaCalc" class="grid">
         
         <div class="titulo"><h3>Arcane Symbol</h3></div>
