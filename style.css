@@ -26,14 +26,29 @@ body {
   padding-left: 30px;
 }
 
+#areaCalc{
+  position: relative;
+}
+
 .titulo{
   grid-column: 1 / span 2;
   grid-row: 1 / span 1;
+  place-self: center;
+}
+
+.selecaoSimbolo{
+  grid-column: 1 / span 2;
+  grid-row: 2 / span 1;
+
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .areaEXP{
   grid-column: 1 / span 1;
-  grid-row: 2 / span 1;
+  grid-row: 3 / span 1;
   display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: auto auto;
@@ -41,7 +56,7 @@ body {
 
 .areaValores{
   grid-column: 2 / span 1;
-  grid-row: 2 / span 1;
+  grid-row: 3 / span 1;
   display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: auto auto;
@@ -49,27 +64,17 @@ body {
 
 .areaIncrementos{
   grid-column: 1 / span 2;
-  grid-row: 3 / span 1;
+  grid-row: 4 / span 1;
   justify-self: center;
 }
 
 .areaBotao{
   grid-column: 1 / span 1;
-  grid-row: 4 / span 1;
+  grid-row: 5 / span 1;
 }
 
 .areaResultado{
   grid-column: 1 / span 2;
-  grid-row: 5 / span 1;
+  grid-row: 6 / span 1;
 }
 
-.classeEXP{
-  position: absolute;
-  width: 50px;
-  left: 150px;
-}
-
-#areaCalc{
-  position: relative;
-/*  top: 250px; left: 250px; */
-}

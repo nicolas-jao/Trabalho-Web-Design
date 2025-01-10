@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cálculadora Arcane Symbols Maplestory</title>
-    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
     <meta name="keywords" content="HTML, CSS, Javascript, Trabalho, WebDev">
     <meta name="author" content="João Nícolas">
     <link rel="stylesheet" href="style.css">
@@ -16,7 +16,6 @@
             let exp, tempo, temporario, diasWeekly;
             let ganhoDiario = Number(document.getElementById("daily").value);
 
-            <!--Analisa os -->
             switch (document.getElementById('nivel').value) {
                 case '1':
                     exp = 0;
@@ -129,11 +128,20 @@
         
         <div class="titulo"><h3>Arcane Symbol</h3></div>
         
+        <div class="selecaoSimbolo">
+            <div><img src="/img/VanishingJourney.webp" class="VanishingJourney"></div>
+            <div><img src="/img/ChuChu.webp" class="ChuChu"></div>
+            <div><img src="/img/Lachelein.webp" class="Lachelein"></div>
+            <div><img src="/img/Arcana.webp" class="Arcana"></div>
+            <div><img src="/img/Morass.webp" class="Morass"></div>
+            <div><img src="/img/Esfera.webp" class="Esfera"></div>
+        </div>
+
         <div class="areaEXP">
             <div><label for="nivel">Nível:</label></div>
-            <div><input type="number" id="nivel" name="nivel" min="1" max="20" value="18" style="width: 50px"></div>
-            <div><label for="quantity">Experiência:</label></div>
-            <div><input type="number" id="experiencia" name="experiencia"  min="0" value="376" style="width: 50px"></div>    
+            <div><input type="number" id="nivel" min="1" max="20" value="18" style="width: 50px"></div>
+            <div><label for="experiencia">Experiência:</label></div>
+            <div><input type="number" id="experiencia" min="0" value="376" style="width: 50px"></div>    
         </div>
 
         <div class="areaValores">
