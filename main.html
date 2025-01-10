@@ -10,7 +10,66 @@
     <link rel="stylesheet" href="style.css">
     
     <script>
+        let controle;
         let date = new Date();
+
+        function Journey(){
+            resetCor();
+            document.getElementById("iconeJ").style.backgroundColor= "rgb(11, 67, 122)";
+            document.getElementById('experiencia').value = localStorage.getItem("expJ");
+            document.getElementById('nivel').value = localStorage.getItem("nivelJ");
+            controle = 0;
+        }
+
+        function ChuChu(){
+            resetCor();
+            document.getElementById("iconeC").style.backgroundColor= "rgb(11, 67, 122)";
+            document.getElementById('experiencia').value = localStorage.getItem("expC");
+            document.getElementById('nivel').value = localStorage.getItem("nivelC");
+            controle = 1;
+        }
+
+        function Lachelein(){
+            resetCor();
+            document.getElementById("iconeL").style.backgroundColor= "rgb(11, 67, 122)";
+            document.getElementById('experiencia').value = localStorage.getItem("expL");
+            document.getElementById('nivel').value = localStorage.getItem("nivelL");
+            controle = 2;
+        }
+
+        function Arcana(){
+            resetCor();
+            document.getElementById("iconeA").style.backgroundColor= "rgb(11, 67, 122)";
+            document.getElementById('experiencia').value = localStorage.getItem("expA");
+            document.getElementById('nivel').value = localStorage.getItem("nivelA");
+            controle = 3;
+        }
+
+        function Morass(){
+            resetCor();
+            document.getElementById("iconeM").style.backgroundColor= "rgb(11, 67, 122)";
+            document.getElementById('experiencia').value = localStorage.getItem("expM");
+            document.getElementById('nivel').value = localStorage.getItem("nivelM");
+            controle = 4;
+        }
+        
+        function Esfera(){
+            resetCor();
+            document.getElementById("iconeE").style.backgroundColor= "rgb(11, 67, 122)";
+            document.getElementById('experiencia').value = localStorage.getItem("expE");
+            document.getElementById('nivel').value = localStorage.getItem("nivelE");
+            controle = 5;
+        }
+
+        function resetCor(){
+            document.getElementById("iconeJ").style.backgroundColor = "dodgerblue";
+            document.getElementById("iconeC").style.backgroundColor = "dodgerblue";
+            document.getElementById("iconeL").style.backgroundColor = "dodgerblue";
+            document.getElementById("iconeA").style.backgroundColor = "dodgerblue";
+            document.getElementById("iconeM").style.backgroundColor = "dodgerblue";
+            document.getElementById("iconeE").style.backgroundColor = "dodgerblue";
+        }
+
 
         function calculaTempo(){
             let exp, tempo, temporario, diasWeekly;
@@ -105,6 +164,47 @@
                 document.getElementById('tempo').innerHTML = "Simbolo já completo";   
             }
 
+            let salvarExp = document.getElementById('experiencia').value;
+            let salvarNivel = document.getElementById('nivel').value
+
+            switch(controle){
+                case 0:
+                    localStorage.setItem("expJ", salvarExp);
+                    localStorage.setItem("nivelJ", salvarNivel);
+                    console.log('a');
+                    break;
+
+                case 1:
+                    localStorage.setItem("expC", salvarExp);
+                    localStorage.setItem("nivelC", salvarNivel);
+                    console.log('b');
+                    break;
+
+                case 2:
+                    localStorage.setItem("expL", salvarExp);
+                    localStorage.setItem("nivelL", salvarNivel);
+                    console.log('c');
+                    break;
+
+                case 3:
+                    localStorage.setItem("expA", salvarExp);
+                    localStorage.setItem("nivelA", salvarNivel);
+                    console.log('d');
+                    break;
+
+                case 4:
+                    localStorage.setItem("expM", dsalvarExp);
+                    localStorage.setItem("nivelM", salvarNivel);
+                    console.log('e');
+                    break;
+
+                case 5:
+                    localStorage.setItem("expE", salvarExp);
+                    localStorage.setItem("nivelE", salvarNivel);
+                    console.log('f');
+                    break;
+
+            }
         }
 
 
@@ -123,25 +223,25 @@
 
     </script>
 </head>
-<body>   
+<body onload = "Journey()">   
     <div id="areaCalc" class="grid">
         
         <div class="titulo"><h3>Arcane Symbol</h3></div>
         
         <div class="selecaoSimbolo">
-            <div><img src="/img/VanishingJourney.webp" onclick="VanishingJourney()" class="iconeSimbolo"></div>
-            <div><img src="/img/ChuChu.webp" onclick="ChuChu()" class="iconeSimbolo"></div>
-            <div><img src="/img/Lachelein.webp" onclick="Lachelein()" class="iconeSimbolo"></div>
-            <div><img src="/img/Arcana.webp" onclick="Arcana()" class="iconeSimbolo"></div>
-            <div><img src="/img/Morass.webp" onclick="Morass()" class="iconeSimbolo"></div>
-            <div><img src="/img/Esfera.webp" onclick="Esfera()" class="iconeSimbolo"></div>
+            <div><img src="/img/VanishingJourney.webp" onclick="Journey()" class="iconeSimbolo" id="iconeJ"></div>
+            <div><img src="/img/ChuChu.webp" onclick="ChuChu()" class="iconeSimbolo" id="iconeC"></div>
+            <div><img src="/img/Lachelein.webp" onclick="Lachelein()" class="iconeSimbolo" id="iconeL"></div>
+            <div><img src="/img/Arcana.webp" onclick="Arcana()" class="iconeSimbolo" id="iconeA"></div>
+            <div><img src="/img/Morass.webp" onclick="Morass()" class="iconeSimbolo" id="iconeM"></div>
+            <div><img src="/img/Esfera.webp" onclick="Esfera()" class="iconeSimbolo" id="iconeE"></div>
         </div>
 
         <div class="areaEXP">
             <div><label for="nivel">Nível:</label></div>
-            <div><input type="number" id="nivel" min="1" max="20" value="18" style="width: 50px"></div>
+            <div><input type="number" id="nivel" min="1" max="20" style="width: 50px"></div>
             <div><label for="experiencia">Experiência:</label></div>
-            <div><input type="number" id="experiencia" min="0" value="376" style="width: 50px"></div>    
+            <div><input type="number" id="experiencia" min="0" style="width: 50px"></div>    
         </div>
 
         <div class="areaValores">

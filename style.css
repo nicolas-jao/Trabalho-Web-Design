@@ -45,6 +45,7 @@ body {
   flex-direction: row;
   justify-content: space-around;
 }
+
 .iconeSimbolo{
   border: 1px burlywood;
   border-radius: 5px;
