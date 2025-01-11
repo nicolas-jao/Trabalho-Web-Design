@@ -232,68 +232,79 @@
     </script>
 </head>
 <body onload = "Journey()">
-    <div id="areaCalc" class="grid">
-        
-        <div class="titulo"><h3>Arcane Symbol</h3></div>
-        
-        <div class="selecaoSimbolo">
-            <div><img src="/img/VanishingJourney.webp" onclick="Journey()" class="iconeSimbolo" id="iconeJ"></div>
-            <div><img src="/img/ChuChu.webp" onclick="ChuChu()" class="iconeSimbolo" id="iconeC"></div>
-            <div><img src="/img/Lachelein.webp" onclick="Lachelein()" class="iconeSimbolo" id="iconeL"></div>
-            <div><img src="/img/Arcana.webp" onclick="Arcana()" class="iconeSimbolo" id="iconeA"></div>
-            <div><img src="/img/Morass.webp" onclick="Morass()" class="iconeSimbolo" id="iconeM"></div>
-            <div><img src="/img/Esfera.webp" onclick="Esfera()" class="iconeSimbolo" id="iconeE"></div>
-        </div>
-
-        <div class="areaEXP">
-            <div><label for="nivel">Nível:</label></div>
-            <div><input type="number" id="nivel" min="1" max="20" style="width: 50px"></div>
-            <div><label for="experiencia">Experiência:</label></div>
-            <div><input type="number" id="experiencia" min="0" style="width: 50px"></div>    
-        </div>
-
-        <div class="areaValores">
-            <div><label for="daily">Ganho diário:</label></div>
-            <div>
-                <select id="daily" name="daily">
-                    <option selected="selected">20</option>
-                    <option>21</option>
-                    <option>22</option>
-                    <option>24</option>
-                    <option>26</option>
-                    <option>28</option>
-                    <option>30</option>
-                </select>
+    <div class="electricBogaloo">
+        <div id="areaCalc" class="grid">
+            
+            <div class="titulo"><h3>Arcane Symbol</h3></div>
+            
+            <div class="selecaoSimbolo">
+                <div><img src="/img/VanishingJourney.webp" onclick="Journey()" class="iconeSimbolo" id="iconeJ"></div>
+                <div><img src="/img/ChuChu.webp" onclick="ChuChu()" class="iconeSimbolo" id="iconeC"></div>
+                <div><img src="/img/Lachelein.webp" onclick="Lachelein()" class="iconeSimbolo" id="iconeL"></div>
+                <div><img src="/img/Arcana.webp" onclick="Arcana()" class="iconeSimbolo" id="iconeA"></div>
+                <div><img src="/img/Morass.webp" onclick="Morass()" class="iconeSimbolo" id="iconeM"></div>
+                <div><img src="/img/Esfera.webp" onclick="Esfera()" class="iconeSimbolo" id="iconeE"></div>
             </div>
-            
-            
-            <div><label for="weekly">Ganho semanal:</label></div>
-            <div>            
-                <select id="weekly" name="weekly">
-                    <option>0</option>
-                    <option>15</option>
-                    <option>30</option>
-                    <option selected="selected">45</option>
-                </select>
-            </div>    
-        </div>
-        <div class="areaIncrementos">
-            <input type="button" value="+10" onclick="aumentaEXP(10)">
-            <input type="button" value="+15" onclick="aumentaEXP(15)">
-            <input type="button" value="+20" onclick="aumentaEXP(20)">
-            <input type="button" value="+30" onclick="aumentaEXP(30)">
-            <input type="button" value="+45" onclick="aumentaEXP(45)">
-        </div>
 
-        <div class="areaBotao">
-            <input type="button" value="Calcular" onclick="calculaTempo()" style="width: 400px";>
+            <div class="areaEXP">
+                <div><label for="nivel">Nível:</label></div>
+                <div><input type="number" id="nivel" min="1" max="20" style="width: 50px"></div>
+                <div><label for="experiencia">Experiência:</label></div>
+                <div><input type="number" id="experiencia" min="0" style="width: 50px"></div>    
+            </div>
+
+            <div class="areaValores">
+                <div><label for="daily">Ganho diário:</label></div>
+                <div>
+                    <select id="daily" name="daily">
+                        <option selected="selected">20</option>
+                        <option>21</option>
+                        <option>22</option>
+                        <option>24</option>
+                        <option>26</option>
+                        <option>28</option>
+                        <option>30</option>
+                    </select>
+                </div>
+                
+                
+                <div><label for="weekly">Ganho semanal:</label></div>
+                <div>            
+                    <select id="weekly" name="weekly">
+                        <option>0</option>
+                        <option>15</option>
+                        <option>30</option>
+                        <option selected="selected">45</option>
+                    </select>
+                </div>    
+            </div>
+            <div class="areaIncrementos">
+                <input type="button" value="+10" onclick="aumentaEXP(10)">
+                <input type="button" value="+15" onclick="aumentaEXP(15)">
+                <input type="button" value="+20" onclick="aumentaEXP(20)">
+                <input type="button" value="+30" onclick="aumentaEXP(30)">
+                <input type="button" value="+45" onclick="aumentaEXP(45)">
+            </div>
+
+            <div class="areaBotao">
+                <input type="button" value="Calcular" onclick="calculaTempo()" style="width: 400px";>
+            </div>
+        
+            <div class="areaResultado">
+                <p>Tempo restantes: <span id="tempo"> </span></p>
+            </div>
         </div>
-       
-        <div class="areaResultado">
-            <p>Tempo restantes: <span id="tempo"> </span></p>
+        <div id="areaPersonagem" class="grid">
+            <div>
+                <label for="p1" class="label">Personagem 1</label>
+                <input type="radio" id="p1">
+            </div>
+                        <div>
+                <label for="p1" class="label">Personagem 1</label>
+                <input type="radio" id="p1">
+            </div>
         </div>
     </div>
-
     
 </body>
 </html>
