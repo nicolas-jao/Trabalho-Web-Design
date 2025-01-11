@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="style.css">
     
     <script>
-        let controle;
+        let controle, exp;
+        let tempo = 0;
         let date = new Date();
-
         function Journey(){
             resetCor();
             document.getElementById("iconeJ").style.backgroundColor= "rgb(11, 67, 122)";
@@ -78,10 +78,9 @@
 
 
         function calculaTempo(){
-            let exp, tempo, temporario, diasWeekly;
             let ganhoDiario = Number(document.getElementById("daily").value);
-
-            switch (document.getElementById('nivel').value) {
+            let ganhoSemanal = Number(document.getElementById("weekly").value);
+            switch (document.getElementById('nivel').value){
                 case '1':
                     exp = 0;
                     break;
@@ -145,37 +144,32 @@
                 default:
                     return;
             }
+                     
             exp = exp + Number(document.getElementById('experiencia').value);
-            
-            if(exp < 2679){
-                tempo = Math.ceil((2679-exp)/ganhoDiario);
-                diasWeekly = Math.ceil(tempo/7);
-
-                if(date.getDay() != 0)
-                {
-                    diasWeekly = diasWeekly - 1;    
-                }
-
-                temporario = Number(document.getElementById("weekly").value);
-                temporario = diasWeekly * temporario;
-                temporario = Math.floor(temporario/ganhoDiario);
-
-                if(temporario => 7){
-                    temporario = temporario - Math.floor(temporario/7);
-                }
-
-                tempo = tempo - temporario;
-                document.getElementById('tempo').innerHTML =  tempo + " dias.";          
+            while(2678 >= exp)
+            {
+                exp = exp + ganhoDiario;
+                switch (date.getDay()){
+                    default:
+                        break;
+                    case 0:
+                        exp = exp + ganhoSemanal;
+                        break;
+                    }
+                date.setTime(Number(date)+(24*60*60*1000))
             }
             
-            else{
-                document.getElementById('tempo').innerHTML = "Simbolo já completo";   
-            }
+            tempo = Math.floor((Number(date)-Number(new Date()))/(24*60*60*1000))+1;
+            document.getElementById('tempo').innerHTML =  tempo + " dias."; 
+            tempo = 0;
+            exp = 0;
+            date = new Date();
 
             let salvarExp = document.getElementById('experiencia').value;
             let salvarNivel = document.getElementById('nivel').value
 
-            switch(controle){
+            switch(controle)
+            {
                 case 0:
                     localStorage.setItem("expJ", salvarExp);
                     localStorage.setItem("nivelJ", salvarNivel);
@@ -213,15 +207,6 @@
         function aumentaEXP(incremento) {
             document.getElementById('experiencia').value = Number(document.getElementById('experiencia').value) + Number(incremento);
         }
-
-        /*
-        Known Bug:
-        A lógica não funciona corretamente quando se leva em consideração as weeklies, causando assim imprecisões.
-        É preciso reestruturar a lógica, de forma que o cálculo seja feito por semanas e depois convertido para dias.
-        */
-
-
-
 
     </script>
 </head>
@@ -288,18 +273,6 @@
                 <p>Tempo restantes: <span id="tempo"> </span></p>
             </div>
         </div>
-        <!--
-        <div id="areaPersonagem" class="grid">
-            <div>
-                <label for="p1" class="label">Personagem 1</label>
-                <input type="radio" id="p1">
-            </div>
-                <label for="p1" class="label">Personagem 2</label>
-                <input type="radio" id="p2">
-            </div>
-        </div>
-        */
-        -->
     </div>
     
 </body>
