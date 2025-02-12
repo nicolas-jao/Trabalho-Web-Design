@@ -3,23 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cálculadora Arcane Symbols Maplestory</title>
-    <link rel="icon" type="image/x-icon" href="img/favicon.png">
+    <title>Calculadora Arcane Symbols Maplestory</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <meta name="keywords" content="HTML, CSS, Javascript, Trabalho, WebDev">
     <meta name="author" content="João Nícolas">
     <link rel="stylesheet" href="style.css">
     
     <script>
         let controle, exp;
-        let tempo = 0;
-        let date = new Date();
+        let dias = 0;
+        let dataInicial = new Date();
+
+        /*
+        Seleciona o simbolo, muda a cor do background, restaura os valores salvos e limpa o texto
+        */
         function Journey(){
             resetCor();
             document.getElementById("iconeJ").style.backgroundColor= "rgb(11, 67, 122)";
             document.getElementById('experiencia').value = localStorage.getItem("expJ");
             document.getElementById('nivel').value = localStorage.getItem("nivelJ");
             controle = 0;
-            document.getElementById('tempo').innerHTML =  "";
+            document.getElementById('tempoHTML').innerHTML =  "";
+            document.getElementById('dataFinalHTML').innerHTML =  "";
         }
 
         function ChuChu(){
@@ -28,7 +33,8 @@
             document.getElementById('experiencia').value = localStorage.getItem("expC");
             document.getElementById('nivel').value = localStorage.getItem("nivelC");
             controle = 1;
-            document.getElementById('tempo').innerHTML =  "";
+            document.getElementById('tempoHTML').innerHTML =  "";
+            document.getElementById('dataFinalHTML').innerHTML =  "";
         }
 
         function Lachelein(){
@@ -37,7 +43,8 @@
             document.getElementById('experiencia').value = localStorage.getItem("expL");
             document.getElementById('nivel').value = localStorage.getItem("nivelL");
             controle = 2;
-            document.getElementById('tempo').innerHTML =  "";
+            document.getElementById('tempoHTML').innerHTML =  "";
+            document.getElementById('dataFinalHTML').innerHTML =  "";
         }
 
         function Arcana(){
@@ -46,7 +53,8 @@
             document.getElementById('experiencia').value = localStorage.getItem("expA");
             document.getElementById('nivel').value = localStorage.getItem("nivelA");
             controle = 3;
-            document.getElementById('tempo').innerHTML =  "";
+            document.getElementById('tempoHTML').innerHTML =  "";
+            document.getElementById('dataFinalHTML').innerHTML =  "";
         }
 
         function Morass(){
@@ -55,7 +63,8 @@
             document.getElementById('experiencia').value = localStorage.getItem("expM");
             document.getElementById('nivel').value = localStorage.getItem("nivelM");
             controle = 4;
-            document.getElementById('tempo').innerHTML =  "";
+            document.getElementById('tempoHTML').innerHTML =  "";
+            document.getElementById('dataFinalHTML').innerHTML =  "";
         }
         
         function Esfera(){
@@ -64,7 +73,8 @@
             document.getElementById('experiencia').value = localStorage.getItem("expE");
             document.getElementById('nivel').value = localStorage.getItem("nivelE");
             controle = 5;
-            document.getElementById('tempo').innerHTML =  "";
+            document.getElementById('tempoHTML').innerHTML =  "";
+            document.getElementById('dataFinalHTML').innerHTML =  "";
         }
 
         function resetCor(){
@@ -78,96 +88,15 @@
 
 
         function calculaTempo(){
+            let dataFinal = new Date();
             let ganhoDiario = Number(document.getElementById("daily").value);
             let ganhoSemanal = Number(document.getElementById("weekly").value);
-            switch (document.getElementById('nivel').value){
-                case '1':
-                    exp = 0;
-                    break;
-                case '2':
-                    exp = 12;
-                    break;
-                case '3':
-                    exp = 27;
-                    break;                    
-                case '4':
-                    exp = 47;
-                    break;
-                case '5':
-                    exp = 74;
-                    break;
-                case '6':
-                    exp = 110;
-                    break;
-                case '7':
-                    exp = 157;
-                    break;
-                case '8':
-                    exp = 217;
-                    break;
-                case '9':
-                    exp = 292;
-                    break;
-                case '10':
-                    exp = 384;
-                    break;
-                case '11':
-                    exp = 495;
-                    break;
-                case '12':
-                    exp = 627;
-                    break;
-                case '13':
-                    exp = 782;
-                    break;
-                case '14':
-                    exp = 962;
-                    break;
-                case '15':
-                    exp = 1169;
-                    break;
-                case '16':
-                    exp = 1405;
-                    break;
-                case '17':
-                    exp = 1672;
-                    break;
-                case '18':
-                    exp = 1972;
-                    break;
-                case '19':
-                    exp = 2307;
-                    break;
-                case '20':
-                    exp = 2679;
-                    break;
-                default:
-                    return;
-            }
-                     
-            exp = exp + Number(document.getElementById('experiencia').value);
-            while(2678 >= exp)
-            {
-                exp = exp + ganhoDiario;
-                switch (date.getDay()){
-                    default:
-                        break;
-                    case 0:
-                        exp = exp + ganhoSemanal;
-                        break;
-                    }
-                date.setTime(Number(date)+(24*60*60*1000))
-            }
-            
-            tempo = Math.floor((Number(date)-Number(new Date()))/(24*60*60*1000))+1;
-            document.getElementById('tempo').innerHTML =  tempo + " dias."; 
-            tempo = 0;
-            exp = 0;
-            date = new Date();
+            let salvarExp = Number(document.getElementById('experiencia').value);
+            let salvarNivel = Number(document.getElementById('nivel').value);
 
-            let salvarExp = document.getElementById('experiencia').value;
-            let salvarNivel = document.getElementById('nivel').value
-
+            /*
+            Salva os valores dos inputs em localStorage, de acordo com o simbolo selecionado
+            */
             switch(controle)
             {
                 case 0:
@@ -201,6 +130,104 @@
                     break;
 
             }
+
+            /*
+            Verifica a experiência base de cada nível
+            */
+            switch (salvarNivel){
+                case 1:
+                    exp = 0;
+                    break;
+                case 2:
+                    exp = 12;
+                    break;
+                case 3:
+                    exp = 27;
+                    break;                    
+                case 4:
+                    exp = 47;
+                    break;
+                case 5:
+                    exp = 74;
+                    break;
+                case 6:
+                    exp = 110;
+                    break;
+                case 7:
+                    exp = 157;
+                    break;
+                case 8:
+                    exp = 217;
+                    break;
+                case 9:
+                    exp = 292;
+                    break;
+                case 10:
+                    exp = 384;
+                    break;
+                case 11:
+                    exp = 495;
+                    break;
+                case 12:
+                    exp = 627;
+                    break;
+                case 13:
+                    exp = 782;
+                    break;
+                case 14:
+                    exp = 962;
+                    break;
+                case 15:
+                    exp = 1169;
+                    break;
+                case 16:
+                    exp = 1405;
+                    break;
+                case 17:
+                    exp = 1672;
+                    break;
+                case 18:
+                    exp = 1972;
+                    break;
+                case 19:
+                    exp = 2307;
+                    break;
+                case 20:
+                    exp = 2679;
+                    break;
+                default:
+                    return;
+            }
+            /*
+            Experiência total = experiência base + experiência do nivel
+            */
+            exp = exp + salvarExp;
+
+            /*
+            Avança um dia da data final. 
+            Adiciona o ganho diário e se for uma segunda-feira adiciona o ganho semanal, até que a experiência adquirida atinja o valor máximo (2678).
+            */
+            while(exp <= 2678)
+            {
+                exp = exp + ganhoDiario;
+                switch (dataFinal.getDay()){
+                    default:
+                        break;
+                    case 0:
+                        exp = exp + ganhoSemanal;
+                        break;
+                    }
+                dataFinal.setTime(Number(dataFinal)+(24*60*60*1000));
+            }
+            
+            /*
+            Calcula a quantidade de dias entre a data inicial e a final.
+            */
+            dias = Math.floor((Number(dataFinal)-Number(dataInicial))/(24*60*60*1000));
+            document.getElementById('tempoHTML').innerHTML =  dias + " dias."; 
+            document.getElementById('dataFinalHTML').innerHTML =  dataFinal.getDate()+"/"+dataFinal.getMonth()+"/"+dataFinal.getFullYear(); 
+            dias = 0;
+            exp = 0;
         }
 
 
@@ -211,67 +238,66 @@
     </script>
 </head>
 <body onload = "Journey()">
-    <div class="electricBogaloo">
-        <div id="areaCalc" class="grid">
-            
-            <div class="titulo"><h3>Arcane Symbol</h3></div>
-            
-            <div class="selecaoSimbolo">
-                <div><img src="img/VanishingJourney.webp" onclick="Journey()" class="iconeSimbolo" id="iconeJ"></div>
-                <div><img src="img/ChuChu.webp" onclick="ChuChu()" class="iconeSimbolo" id="iconeC"></div>
-                <div><img src="img/Lachelein.webp" onclick="Lachelein()" class="iconeSimbolo" id="iconeL"></div>
-                <div><img src="img/Arcana.webp" onclick="Arcana()" class="iconeSimbolo" id="iconeA"></div>
-                <div><img src="img/Morass.webp" onclick="Morass()" class="iconeSimbolo" id="iconeM"></div>
-                <div><img src="img/Esfera.webp" onclick="Esfera()" class="iconeSimbolo" id="iconeE"></div>
-            </div>
-
-            <div class="areaEXP">
-                <div><label for="nivel">Nível:</label></div>
-                <div><input type="number" id="nivel" min="1" max="20" style="width: 50px"></div>
-                <div><label for="experiencia">Experiência:</label></div>
-                <div><input type="number" id="experiencia" min="0" style="width: 50px"></div>    
-            </div>
-
-            <div class="areaValores">
-                <div><label for="daily">Ganho diário:</label></div>
-                <div>
-                    <select id="daily" name="daily">
-                        <option selected="selected">20</option>
-                        <option>21</option>
-                        <option>22</option>
-                        <option>24</option>
-                        <option>26</option>
-                        <option>28</option>
-                        <option>30</option>
-                    </select>
-                </div>
-                
-                
-                <div><label for="weekly">Ganho semanal:</label></div>
-                <div>            
-                    <select id="weekly" name="weekly">
-                        <option>0</option>
-                        <option>15</option>
-                        <option>30</option>
-                        <option selected="selected">45</option>
-                    </select>
-                </div>    
-            </div>
-            <div class="areaIncrementos">
-                <input type="button" value="+10" onclick="aumentaEXP(10)">
-                <input type="button" value="+15" onclick="aumentaEXP(15)">
-                <input type="button" value="+20" onclick="aumentaEXP(20)">
-                <input type="button" value="+30" onclick="aumentaEXP(30)">
-                <input type="button" value="+45" onclick="aumentaEXP(45)">
-            </div>
-
-            <div class="areaBotao">
-                <input type="button" value="Calcular" onclick="calculaTempo()" style="width: 400px">
-            </div>
+    <div id="areaCalc" class="grid">
         
-            <div class="areaResultado">
-                <p>Tempo restantes: <span id="tempo"> </span></p>
+        <div class="titulo"><h3>Arcane Symbol</h3></div>
+        
+        <div class="selecaoSimbolo">
+            <div><img src="img/VanishingJourney.webp" onclick="Journey()" class="iconeSimbolo" id="iconeJ"></div>
+            <div><img src="img/ChuChu.webp" onclick="ChuChu()" class="iconeSimbolo" id="iconeC"></div>
+            <div><img src="img/Lachelein.webp" onclick="Lachelein()" class="iconeSimbolo" id="iconeL"></div>
+            <div><img src="img/Arcana.webp" onclick="Arcana()" class="iconeSimbolo" id="iconeA"></div>
+            <div><img src="img/Morass.webp" onclick="Morass()" class="iconeSimbolo" id="iconeM"></div>
+            <div><img src="img/Esfera.webp" onclick="Esfera()" class="iconeSimbolo" id="iconeE"></div>
+        </div>
+
+        <div class="areaEXP">
+            <div><label for="nivel">Nível:</label></div>
+            <div><input type="number" id="nivel" min="1" max="20" style="width: 50px"></div>
+            <div><label for="experiencia">Experiência:</label></div>
+            <div><input type="number" id="experiencia" min="0" style="width: 50px"></div>    
+        </div>
+
+        <div class="areaValores">
+            <div><label for="daily">Ganho diário:</label></div>
+            <div>
+                <select id="daily" name="daily">
+                    <option selected="selected">20</option>
+                    <option>21</option>
+                    <option>22</option>
+                    <option>24</option>
+                    <option>26</option>
+                    <option>28</option>
+                    <option>30</option>
+                </select>
             </div>
+            
+            
+            <div><label for="weekly">Ganho semanal:</label></div>
+            <div>            
+                <select id="weekly" name="weekly">
+                    <option>0</option>
+                    <option>15</option>
+                    <option>30</option>
+                    <option selected="selected">45</option>
+                </select>
+            </div>    
+        </div>
+        <div class="areaIncrementos">
+            <input type="button" value="+10" onclick="aumentaEXP(10)">
+            <input type="button" value="+15" onclick="aumentaEXP(15)">
+            <input type="button" value="+20" onclick="aumentaEXP(20)">
+            <input type="button" value="+30" onclick="aumentaEXP(30)">
+            <input type="button" value="+45" onclick="aumentaEXP(45)">
+        </div>
+
+        <div class="areaBotao">
+            <input type="button" value="Calcular" onclick="calculaTempo()" style="width: 400px">
+        </div>
+    
+        <div class="areaResultado">
+            <p>Tempo restante: <span id="tempoHTML"> </span><br>
+            Data: <span id="dataFinalHTML"> </span></p>
         </div>
     </div>
     
